@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+  <html lang="es">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sangucheria - Gestion</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+  <header class="topbar">
+  <h1>Mi Sangucheria</h1>
+  <nav class="tabs">
+  <button class="tab-btn active" data-tab="mesas">Mesas</button>
+  <button class="tab-btn" data-tab="llevar">Para llevar</button>
+  <button class="tab-btn" data-tab="productos">Productos y Stock</button>
+<button class="tab-btn" data-tab="resumen">Resumen del dia</button>
+</nav>
+</header>
+
+<main>
+
+<section id="tab-mesas" class="tab-panel active">
+  <div class="panel-header">
+<h2>Mesas</h2>
+  <button id="btn-agregar-mesa" class="btn secondary">+ Agregar mesa</button>
+  </div>
+  <div id="grid-mesas" class="grid-mesas"></div>
+  </section>
+
+  <section id="tab-llevar" class="tab-panel">
+  <div class="panel-header">
+<h2>Pedidos para llevar</h2>
+<button id="btn-nuevo-llevar" class="btn primary">+ Nuevo pedido para llevar</button>
+</div>
+  <div id="lista-llevar" class="lista-pedidos"></div>
+  </section>
+
+  <section id="tab-productos" class="tab-panel">
+  <div class="panel-header">
+<h2>Productos y Stock</h2>
+  <button id="btn-nuevo-producto" class="btn primary">+ Nuevo producto</button>
+</div>
+  <table class="tabla" id="tabla-productos">
+  <thead>
+  <tr>
+  <th>Producto</th>
+<th>Categoria</th>
+<th>Costo</th>
+  <th>Precio</th>
+  <th>Margen</th>
+  <th>Stock</th>
+  <th>Stock min.</th>
+  <th></th>
+</tr>
+  </thead>
+  <tbody></tbody>
+</table>
+</section>
+
+  <section id="tab-resumen" class="tab-panel">
+  <h2>Resumen del dia</h2>
+  <div id="resumen-cards" class="cards"></div>
+  <h3>Productos con stock bajo</h3>
+  <ul id="lista-stock-bajo" class="lista-simple"></ul>
+  </section>
+
+  </main>
+
+  <div id="modal-pedido" class="modal oculto">
+<div class="modal-content">
+  <button class="cerrar-modal" id="cerrar-modal-pedido">&times;</button>
+  <h2 id="pedido-titulo">Pedido</h2>
+  <div class="agregar-item">
+  <select id="select-producto"></select>
+  <input type="number" id="input-cantidad" min="1" value="1">
+  <button id="btn-agregar-item" class="btn secondary">Agregar</button>
+  </div>
+  <table class="tabla" id="tabla-items-pedido">
+  <thead>
+  <tr><th>Producto</th><th>Cant.</th><th>Precio</th><th>Subtotal</th><th></th></tr>
+  </thead>
+  <tbody></tbody>
+  </table>
+<div class="total-pedido">Total: <span id="pedido-total">$0</span></div>
+  <div class="modal-acciones">
+  <button id="btn-cancelar-pedido" class="btn danger">Cancelar pedido</button>
+  <button id="btn-cobrar-pedido" class="btn primary">Cobrar y cerrar</button>
+  </div>
+  </div>
+  </div>
+
+  <div id="modal-producto" class="modal oculto">
+  <div class="modal-content angosto">
+  <button class="cerrar-modal" id="cerrar-modal-producto">&times;</button>
+  <h2 id="producto-titulo">Nuevo producto</h2>
+  <form id="form-producto">
+  <input type="hidden" id="producto-id">
+  <label>Nombre<input type="text" id="producto-nombre" required></label>
+  <label>Categoria<input type="text" id="producto-categoria" placeholder="sandwiches, bebidas, etc."></label>
+  <label>Costo<input type="number" id="producto-costo" step="0.01" required></label>
+<label>Precio de venta<input type="number" id="producto-precio" step="0.01" required></label>
+  <label>Stock actual<input type="number" id="producto-stock" step="1" value="0"></label>
+<label>Stock minimo (para alerta)<input type="number" id="producto-stock-minimo" step="1" value="0"></label>
+  <button type="submit" class="btn primary">Guardar</button>
+  </form>
+  </div>
+</div>
+
+<div id="toast" class="toast oculto"></div>
+
+  <script src="app.js"></script>
+  </body>
+  </html>
+  
